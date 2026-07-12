@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from "react";
 import {
   Leaf, Search, Bell, ChevronDown, LogOut, Menu, X, ArrowUpRight, ArrowDownRight,
-  LayoutDashboard, Globe2, Settings, FileBarChart2, Building2, Users, Trophy, Award, Calendar
+  LayoutDashboard, Globe2, Settings, FileBarChart2, Building2, Users, Trophy, Award, Calendar, Eye, Mail, Phone, MapPin, UserRound, ShieldCheck, Gift, CheckCircle2, Clock3
 } from "lucide-react";
 import {
   AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer
@@ -9,6 +9,7 @@ import {
 import { SphereMark } from "../components/SphereMark";
 import { DepartmentsPage } from "./Departments";
 import "./EcoSphereApp.css";
+import "./employee.css";
 
 // -- Radial "Sustainability Score" dial -------------------------------------
 function ScoreDial({ score = 82, size = 128 }) {
@@ -40,6 +41,7 @@ function ScoreDial({ score = 82, size = 128 }) {
 const NAV_ITEMS = [
   { key: "dashboard", label: "Dashboard", icon: LayoutDashboard },
   { key: "departments", label: "Departments", icon: Building2 },
+  { key: "employees", label: "Employees", icon: Users },
   { key: "csr", label: "CSR Activities", icon: Calendar },
   { key: "challenges", label: "Challenges", icon: Trophy },
   { key: "badges", label: "Badges", icon: Award },
@@ -78,6 +80,201 @@ const goals = [
   { label: "Net-zero Carbon footprint goal YTD", value: 65 },
   { label: "Sustainability challenges completed", value: 87 },
 ];
+
+const employees = [
+  {
+    id: 1,
+    code: "EMP001",
+    name: "Sarah Connor",
+    initials: "SC",
+    email: "sarah.connor@ecosphere.com",
+    phone: "+91 98765 43210",
+    department: "Engineering & Dev",
+    designation: "Sustainability Lead",
+    manager: "Michael Chen",
+    status: "Active",
+    joiningDate: "10 Apr 2023",
+    employmentType: "Full Time",
+    location: "Bengaluru",
+    xp: 4200,
+    esgScore: 88,
+    environmental: 91,
+    social: 86,
+    governance: 87,
+    rank: 3,
+    badges: 12,
+    challenges: 8,
+    csr: 15,
+    points: 3150,
+  },
+  {
+    id: 2,
+    code: "EMP002",
+    name: "Michael Chen",
+    initials: "MC",
+    email: "michael.chen@ecosphere.com",
+    phone: "+91 98765 43211",
+    department: "Engineering & Dev",
+    designation: "Engineering Manager",
+    manager: "Aisha Mehta",
+    status: "Active",
+    joiningDate: "18 Jan 2021",
+    employmentType: "Full Time",
+    location: "Hyderabad",
+    xp: 5100,
+    esgScore: 92,
+    environmental: 94,
+    social: 91,
+    governance: 90,
+    rank: 1,
+    badges: 18,
+    challenges: 11,
+    csr: 22,
+    points: 4020,
+  },
+  {
+    id: 3,
+    code: "EMP003",
+    name: "Priya Nair",
+    initials: "PN",
+    email: "priya.nair@ecosphere.com",
+    phone: "+91 98765 43212",
+    department: "Human Resources",
+    designation: "People Operations Partner",
+    manager: "Aisha Mehta",
+    status: "On Leave",
+    joiningDate: "05 Aug 2022",
+    employmentType: "Full Time",
+    location: "Mumbai",
+    xp: 3380,
+    esgScore: 81,
+    environmental: 78,
+    social: 88,
+    governance: 77,
+    rank: 9,
+    badges: 9,
+    challenges: 6,
+    csr: 13,
+    points: 2440,
+  },
+  {
+    id: 4,
+    code: "EMP004",
+    name: "Rahul Verma",
+    initials: "RV",
+    email: "rahul.verma@ecosphere.com",
+    phone: "+91 98765 43213",
+    department: "Finance & Admin",
+    designation: "Compliance Analyst",
+    manager: "Nora Kapoor",
+    status: "Active",
+    joiningDate: "21 Nov 2020",
+    employmentType: "Full Time",
+    location: "Delhi",
+    xp: 2870,
+    esgScore: 76,
+    environmental: 72,
+    social: 75,
+    governance: 82,
+    rank: 14,
+    badges: 7,
+    challenges: 5,
+    csr: 8,
+    points: 1980,
+  },
+  {
+    id: 5,
+    code: "EMP005",
+    name: "Elena D'Souza",
+    initials: "ED",
+    email: "elena.dsouza@ecosphere.com",
+    phone: "+91 98765 43214",
+    department: "Brand & Marketing",
+    designation: "CSR Campaign Manager",
+    manager: "Nora Kapoor",
+    status: "Inactive",
+    joiningDate: "14 Mar 2019",
+    employmentType: "Contract",
+    location: "Pune",
+    xp: 2210,
+    esgScore: 69,
+    environmental: 65,
+    social: 79,
+    governance: 63,
+    rank: 22,
+    badges: 5,
+    challenges: 3,
+    csr: 10,
+    points: 1560,
+  },
+  {
+    id: 6,
+    code: "EMP006",
+    name: "Arjun Rao",
+    initials: "AR",
+    email: "arjun.rao@ecosphere.com",
+    phone: "+91 98765 43215",
+    department: "Sales & Accounts",
+    designation: "Enterprise Account Lead",
+    manager: "Michael Chen",
+    status: "Active",
+    joiningDate: "02 Jun 2024",
+    employmentType: "Full Time",
+    location: "Chennai",
+    xp: 3640,
+    esgScore: 84,
+    environmental: 82,
+    social: 89,
+    governance: 80,
+    rank: 7,
+    badges: 10,
+    challenges: 7,
+    csr: 12,
+    points: 2700,
+  },
+];
+
+const profileTabs = [
+  "Overview",
+  "CSR Activities",
+  "Challenges",
+  "Policies",
+  "Badges",
+  "Rewards",
+  "Compliance",
+];
+
+const tabSamples = {
+  "CSR Activities": [
+    ["Tree Planting Drive", "Environment", "18 Jun 2026", "Approved", "180 pts", "Uploaded"],
+    ["Beach Cleanup", "Community", "29 May 2026", "Approved", "140 pts", "Uploaded"],
+    ["STEM Mentoring", "Education", "11 Apr 2026", "Pending", "90 pts", "Review"],
+  ],
+  Challenges: [
+    ["Commute Zero", "Hard", "100%", "450 XP", "Completed", "30 Jun 2026"],
+    ["Paperless Sprint", "Medium", "72%", "260 XP", "In Progress", "20 Jul 2026"],
+    ["Energy Saver", "Easy", "100%", "180 XP", "Completed", "10 May 2026"],
+  ],
+  Policies: [
+    ["Code of Sustainability", "03 Jan 2026", "Acknowledged", "No"],
+    ["Waste Segregation SOP", "15 Feb 2026", "Acknowledged", "No"],
+    ["Supplier Ethics Policy", "22 Jun 2026", "Pending", "Yes"],
+  ],
+  Badges: [
+    ["Carbon Warrior", "Reduced commute footprint", "04 Apr 2026", "Complete 3 commute challenges"],
+    ["CSR Champion", "Completed high-impact CSR work", "18 Jun 2026", "Earn 1,000 CSR points"],
+    ["Policy Steward", "Acknowledged governance policies", "02 Mar 2026", "Acknowledge 5 policies"],
+  ],
+  Rewards: [
+    ["Eco Store Voucher", "14 May 2026", "750", "Delivered"],
+    ["Plant-a-Tree Certificate", "08 Apr 2026", "300", "Delivered"],
+    ["Learning Grant", "20 Jun 2026", "1,200", "Processing"],
+  ],
+  Compliance: [
+    ["Travel emissions evidence", "Medium", "Rahul Verma", "25 Jul 2026", "Open", "-"],
+    ["CSR proof verification", "Low", "Priya Nair", "12 Jun 2026", "Resolved", "16 Jun 2026"],
+  ],
+};
 
 function StatCard({ icon: Icon, label, value, delta, positive, tint, cardStyle = "minimalist", theme = "blue" }) {
   const isVibrant = cardStyle === "vibrant";
@@ -158,6 +355,309 @@ function Sidebar({ active, setActive, open, setOpen }) {
         </div>
       </aside>
     </>
+  );
+}
+
+function StatusBadge({ status }) {
+  const key = status.toLowerCase().replace(/\s+/g, "-");
+  return <span className={`es-status-badge status-${key}`}>{status}</span>;
+}
+
+function EmployeeAvatar({ employee, large = false }) {
+  return (
+    <div className={`es-employee-avatar ${large ? "large" : ""}`}>
+      {employee.initials}
+    </div>
+  );
+}
+
+function FilterSelect({ label, value, onChange, options }) {
+  return (
+    <label className="es-filter-field">
+      <span>{label}</span>
+      <select value={value} onChange={(e) => onChange(e.target.value)}>
+        <option value="All">All</option>
+        {options.map((option) => (
+          <option key={option} value={option}>{option}</option>
+        ))}
+      </select>
+    </label>
+  );
+}
+
+function MetricStrip({ employee }) {
+  const metrics = [
+    { label: "Environmental", value: employee.environmental },
+    { label: "Social", value: employee.social },
+    { label: "Governance", value: employee.governance },
+    { label: "Overall ESG", value: employee.esgScore },
+  ];
+
+  return (
+    <div className="es-score-strip">
+      {metrics.map((metric) => (
+        <div key={metric.label} className="es-score-metric">
+          <div className="es-score-metric-header">
+            <span>{metric.label}</span>
+            <strong>{metric.value}</strong>
+          </div>
+          <div className="es-goal-progress-wrapper">
+            <div className="es-goal-progress-bar" style={{ width: `${metric.value}%` }} />
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function EmployeeProfile({ employee, onBack }) {
+  const [tab, setTab] = useState("Overview");
+
+  return (
+    <section className="es-employee-profile es-fade-up">
+      <button className="es-text-action" onClick={onBack}>Back to employees</button>
+
+      <div className="es-profile-hero">
+        <div className="es-profile-main">
+          <EmployeeAvatar employee={employee} large />
+          <div>
+            <div className="es-profile-title-row">
+              <h1>{employee.name}</h1>
+              <StatusBadge status={employee.status} />
+            </div>
+            <p>{employee.code} · {employee.designation}</p>
+            <div className="es-profile-meta">
+              <span><Building2 size={14} />{employee.department}</span>
+              <span><UserRound size={14} />{employee.manager}</span>
+              <span><MapPin size={14} />{employee.location}</span>
+            </div>
+          </div>
+        </div>
+        <div className="es-profile-contact">
+          <span><Mail size={14} />{employee.email}</span>
+          <span><Phone size={14} />{employee.phone}</span>
+          <span><Calendar size={14} />Joined {employee.joiningDate}</span>
+        </div>
+      </div>
+
+      <div className="es-tabs es-scrollbar">
+        {profileTabs.map((item) => (
+          <button
+            key={item}
+            className={tab === item ? "active" : ""}
+            onClick={() => setTab(item)}
+          >
+            {item}
+          </button>
+        ))}
+      </div>
+
+      {tab === "Overview" ? (
+        <div className="es-profile-grid">
+          <div className="es-card">
+            <p className="es-card-title">Employee Information</p>
+            <div className="es-detail-list">
+              <span><strong>Department</strong>{employee.department}</span>
+              <span><strong>Reporting Manager</strong>{employee.manager}</span>
+              <span><strong>Employment Type</strong>{employee.employmentType}</span>
+              <span><strong>Joining Date</strong>{employee.joiningDate}</span>
+              <span><strong>Years of Service</strong>3 years</span>
+            </div>
+          </div>
+
+          <div className="es-card">
+            <p className="es-card-title">ESG Summary</p>
+            <MetricStrip employee={employee} />
+          </div>
+
+          <div className="es-card">
+            <p className="es-card-title">Gamification</p>
+            <div className="es-mini-stat-grid">
+              <span><strong>{employee.xp.toLocaleString()}</strong>Total XP</span>
+              <span><strong>{employee.points.toLocaleString()}</strong>Total Points</span>
+              <span><strong>#{employee.rank}</strong>Current Rank</span>
+              <span><strong>{employee.badges}</strong>Badges Earned</span>
+              <span><strong>{employee.challenges}</strong>Challenges Done</span>
+              <span><strong>{employee.csr}</strong>CSR Completed</span>
+            </div>
+          </div>
+
+          <div className="es-card">
+            <p className="es-card-title">Recent ESG Activities</p>
+            <div className="es-timeline">
+              <span><CheckCircle2 size={15} />Completed Commute Zero challenge</span>
+              <span><Award size={15} />Earned CSR Champion badge</span>
+              <span><ShieldCheck size={15} />Acknowledged Supplier Ethics Policy</span>
+              <span><Gift size={15} />Redeemed Eco Store Voucher</span>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <div className="es-card es-tab-table-card">
+          <p className="es-card-title">{tab}</p>
+          <div className="es-table-wrap es-scrollbar">
+            <table className="es-data-table">
+              <tbody>
+                {(tabSamples[tab] || []).map((row) => (
+                  <tr key={row.join("-")}>
+                    {row.map((cell) => (
+                      <td key={cell}>{cell}</td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
+    </section>
+  );
+}
+
+function EmployeesModule() {
+  const [selectedEmployee, setSelectedEmployee] = useState(null);
+  const [search, setSearch] = useState("");
+  const [filters, setFilters] = useState({
+    department: "All",
+    designation: "All",
+    employmentType: "All",
+    status: "All",
+    location: "All",
+    manager: "All",
+    joined: "All",
+  });
+
+  const updateFilter = (key, value) => {
+    setFilters((current) => ({ ...current, [key]: value }));
+  };
+
+  const unique = (key) => [...new Set(employees.map((employee) => employee[key]))];
+
+  const filteredEmployees = employees.filter((employee) => {
+    const searchText = `${employee.name} ${employee.code} ${employee.email}`.toLowerCase();
+    const matchesSearch = searchText.includes(search.toLowerCase());
+    const matchesFilters =
+      (filters.department === "All" || employee.department === filters.department) &&
+      (filters.designation === "All" || employee.designation === filters.designation) &&
+      (filters.employmentType === "All" || employee.employmentType === filters.employmentType) &&
+      (filters.status === "All" || employee.status === filters.status) &&
+      (filters.location === "All" || employee.location === filters.location) &&
+      (filters.manager === "All" || employee.manager === filters.manager) &&
+      (filters.joined === "All" || employee.joiningDate.includes(filters.joined));
+
+    return matchesSearch && matchesFilters;
+  });
+
+  const activeEmployees = employees.filter((employee) => employee.status === "Active").length;
+  const inactiveEmployees = employees.filter((employee) => employee.status === "Inactive").length;
+  const avgEsg = Math.round(employees.reduce((sum, employee) => sum + employee.esgScore, 0) / employees.length);
+  const avgXp = Math.round(employees.reduce((sum, employee) => sum + employee.xp, 0) / employees.length);
+
+  const stats = [
+    { icon: Users, label: "Total Employees", value: employees.length, delta: "Read only", positive: true, tint: "#E8F3FC", theme: "blue" },
+    { icon: CheckCircle2, label: "Active Employees", value: activeEmployees, delta: "Live", positive: true, tint: "#E9FBF5", theme: "green" },
+    { icon: Clock3, label: "Inactive Employees", value: inactiveEmployees, delta: "Archived", positive: true, tint: "#FEF9E7", theme: "gold" },
+    { icon: Building2, label: "Departments Covered", value: unique("department").length, delta: "100%", positive: true, tint: "#E8F3FC", theme: "blue" },
+    { icon: Leaf, label: "Average ESG Score", value: avgEsg, delta: "+4.1%", positive: true, tint: "#E9FBF5", theme: "green" },
+    { icon: Trophy, label: "Average XP", value: avgXp.toLocaleString(), delta: "+8.7%", positive: true, tint: "#FEF9E7", theme: "gold" },
+  ];
+
+  if (selectedEmployee) {
+    return <EmployeeProfile employee={selectedEmployee} onBack={() => setSelectedEmployee(null)} />;
+  }
+
+  return (
+    <section className="es-employees-page es-fade-up">
+      <div className="es-page-header">
+        <div>
+          <h1>Employees</h1>
+          <p>View employee information and ESG engagement across the organization.</p>
+        </div>
+      </div>
+
+      <div className="es-stats-grid">
+        {stats.map((stat) => (
+          <StatCard key={stat.label} {...stat} cardStyle="vibrant" />
+        ))}
+      </div>
+
+      <div className="es-filter-card">
+        <div className="es-filter-search">
+          <Search size={15} />
+          <input
+            value={search}
+            onChange={(event) => setSearch(event.target.value)}
+            placeholder="Search by employee name, code, or email"
+          />
+        </div>
+        <div className="es-filter-grid">
+          <FilterSelect label="Department" value={filters.department} onChange={(value) => updateFilter("department", value)} options={unique("department")} />
+          <FilterSelect label="Designation" value={filters.designation} onChange={(value) => updateFilter("designation", value)} options={unique("designation")} />
+          <FilterSelect label="Employment Type" value={filters.employmentType} onChange={(value) => updateFilter("employmentType", value)} options={unique("employmentType")} />
+          <FilterSelect label="Status" value={filters.status} onChange={(value) => updateFilter("status", value)} options={["Active", "Inactive", "On Leave"]} />
+          <FilterSelect label="Location" value={filters.location} onChange={(value) => updateFilter("location", value)} options={unique("location")} />
+          <FilterSelect label="Manager" value={filters.manager} onChange={(value) => updateFilter("manager", value)} options={unique("manager")} />
+          <FilterSelect label="Date Joined" value={filters.joined} onChange={(value) => updateFilter("joined", value)} options={["2024", "2023", "2022", "2021", "2020"]} />
+        </div>
+      </div>
+
+      <div className="es-card es-employee-table-card">
+        <div className="es-card-header-row">
+          <div>
+            <p className="es-card-title">Employee Directory</p>
+            <p className="es-card-subtitle">{filteredEmployees.length} employees shown</p>
+          </div>
+        </div>
+        <div className="es-table-wrap es-scrollbar">
+          <table className="es-data-table">
+            <thead>
+              <tr>
+                <th>Profile</th>
+                <th>Employee Code</th>
+                <th>Employee Name</th>
+                <th>Department</th>
+                <th>Designation</th>
+                <th>Manager</th>
+                <th>Status</th>
+                <th>Joining Date</th>
+                <th>XP</th>
+                <th>ESG Score</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filteredEmployees.map((employee) => (
+                <tr key={employee.id}>
+                  <td><EmployeeAvatar employee={employee} /></td>
+                  <td className="es-mono">{employee.code}</td>
+                  <td>
+                    <div className="es-table-person">
+                      <strong>{employee.name}</strong>
+                      <span>{employee.email}</span>
+                    </div>
+                  </td>
+                  <td>{employee.department}</td>
+                  <td>{employee.designation}</td>
+                  <td>{employee.manager}</td>
+                  <td><StatusBadge status={employee.status} /></td>
+                  <td>{employee.joiningDate}</td>
+                  <td className="es-mono">{employee.xp.toLocaleString()}</td>
+                  <td>
+                    <span className="es-score-pill">{employee.esgScore}</span>
+                  </td>
+                  <td>
+                    <button className="es-view-btn" onClick={() => setSelectedEmployee(employee)}>
+                      <Eye size={14} />
+                      View Details
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -256,6 +756,8 @@ export function Dashboard({ user, onLogout }) {
         <main className="es-dashboard-main es-scrollbar">
           {active === "departments" ? (
             <DepartmentsPage />
+          ) : active === "employees" ? (
+            <EmployeesModule />
           ) : (
             <>
               {/* Stat cards — Vibrant Gradient style */}
