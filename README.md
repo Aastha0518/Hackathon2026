@@ -231,7 +231,7 @@ Key component classes in `EcoSphereApp.css`:
 > Built with 💚 for a sustainable future.
 
 ## 📸 Screens
- -login:
+- login:
   <img width="1242" height="705" alt="image" src="https://github.com/user-attachments/assets/91a1da87-17c1-4855-ac6a-311eb871f4d8" />
 - Dashboard:
   <img width="1312" height="732" alt="image" src="https://github.com/user-attachments/assets/bd29f8be-a381-4efb-bc92-75ed767ae722" />
