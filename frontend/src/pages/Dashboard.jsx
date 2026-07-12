@@ -9,6 +9,9 @@ import {
 import { SphereMark } from "../components/SphereMark";
 import { DepartmentsPage } from "./Departments";
 import "./EcoSphereApp.css";
+import { BadgesModule } from "./Badges";
+import { ChallengesModule } from "./Challenges";
+import { ReportsModule } from "./Reports";
 
 const API_BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
 
@@ -921,12 +924,19 @@ function AdminDashboard({ user, onLogout }) {
         <Navbar setSidebarOpen={setSidebarOpen} user={user} onLogout={onLogout} />
 
         <main className="es-dashboard-main es-scrollbar">
+
           {active === "departments" ? (
             <DepartmentsPage />
           ) : active === "employees" ? (
             <EmployeesModule />
           ) : active === "settings" ? (
             <AddUserForm />
+          ) : active === "badges" ? (
+            <BadgesModule />
+          ) : active === "challenges" ? (
+            <ChallengesModule />
+          ) : active === "reports" ? (
+            <ReportsModule />
           ) : (
             <>
               {/* Stat cards — Vibrant Gradient style */}
