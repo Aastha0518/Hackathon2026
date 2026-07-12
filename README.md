@@ -129,13 +129,10 @@ npm run dev
 - Employee Management
 - Employee Details
 - Departments
-- Environmental Module
 - CSR Activities
-- Governance
 - Challenges
 - Badges
 - Rewards
-- Leaderboard
 
 ---
 
