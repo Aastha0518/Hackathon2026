@@ -250,14 +250,17 @@ Key component classes in `EcoSphereApp.css`:
   <img width="1242" height="697" alt="image" src="https://github.com/user-attachments/assets/db0398b5-d254-48ca-89be-6e92e50791d5" /> 
 - Challenges:
   
+  <img width="1590" height="772" alt="image" src="https://github.com/user-attachments/assets/172e168b-5090-4bfb-9fda-fc522df1f5fd" />
+
   <img width="1242" height="705" alt="image" src="https://github.com/user-attachments/assets/9cea71af-8ab6-465d-9831-78942a1371fd" />
+
 - Badges:
   
   <img width="1247" height="705" alt="image" src="https://github.com/user-attachments/assets/4c097682-840b-4a0f-aa4a-a4c45ad081e9" />
 - Rewards
   
   <img width="1240" height="697" alt="image" src="https://github.com/user-attachments/assets/03fb811e-0184-47ab-a568-5cbb723875e2" />
--Add User:
+- Add User:
 
   <img width="1317" height="742" alt="image" src="https://github.com/user-attachments/assets/f4fdb98a-5764-4707-a74a-27880d3eb5b1" />
 -User:
