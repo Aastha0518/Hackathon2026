@@ -9,7 +9,6 @@ import {
 import { SphereMark } from "../components/SphereMark";
 import { DepartmentsPage } from "./Departments";
 import "./EcoSphereApp.css";
-import "./employee.css";
 
 // -- Radial "Sustainability Score" dial -------------------------------------
 function ScoreDial({ score = 82, size = 128 }) {

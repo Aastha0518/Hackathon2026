@@ -1367,6 +1367,419 @@
 }
 
 /* ===========================================================================
+   EMPLOYEE MANAGEMENT MODULE
+   =========================================================================== */
+.es-employees-page,
+.es-employee-profile {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.es-page-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.es-page-header h1,
+.es-profile-hero h1 {
+  font-family: var(--font-display);
+  color: var(--color-ink);
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.es-page-header p,
+.es-profile-hero p {
+  color: var(--color-ink-mute);
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+.es-filter-card {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-line-light);
+  border-radius: 0.75rem;
+  box-shadow: var(--shadow-sm);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.es-filter-search {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.es-filter-search svg {
+  position: absolute;
+  left: 0.875rem;
+  color: #93A5B6;
+}
+
+.es-filter-search input,
+.es-filter-field select {
+  width: 100%;
+  border: 1px solid var(--color-line-light);
+  background-color: var(--color-bg);
+  color: var(--color-ink);
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  outline: none;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.es-filter-search input {
+  padding: 0.625rem 0.875rem 0.625rem 2.5rem;
+}
+
+.es-filter-search input:focus,
+.es-filter-field select:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(11, 95, 165, 0.1);
+}
+
+.es-filter-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+}
+
+@media (min-width: 768px) {
+  .es-filter-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1280px) {
+  .es-filter-grid {
+    grid-template-columns: repeat(7, 1fr);
+  }
+}
+
+.es-filter-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.es-filter-field span {
+  color: #33465A;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.es-filter-field select {
+  padding: 0.55rem 0.65rem;
+}
+
+.es-card-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.es-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.es-data-table {
+  width: 100%;
+  min-width: 980px;
+  border-collapse: collapse;
+}
+
+.es-data-table th {
+  text-align: left;
+  color: var(--color-ink-mute);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  padding: 0.75rem;
+  border-bottom: 1px solid var(--color-line-light);
+  background-color: var(--color-bg);
+}
+
+.es-data-table td {
+  color: #33465A;
+  font-size: 0.8125rem;
+  padding: 0.875rem 0.75rem;
+  border-bottom: 1px solid var(--color-line-light);
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.es-data-table tbody tr:hover {
+  background-color: var(--color-sky-hover);
+}
+
+.es-table-person {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.es-table-person strong {
+  color: var(--color-ink);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.es-table-person span {
+  color: var(--color-ink-mute);
+  font-size: 0.75rem;
+}
+
+.es-employee-avatar {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-white);
+  font-size: 0.75rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  box-shadow: var(--shadow-sm);
+}
+
+.es-employee-avatar.large {
+  width: 4.25rem;
+  height: 4.25rem;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.es-status-badge,
+.es-score-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.25rem 0.55rem;
+}
+
+.es-status-badge.status-active {
+  color: #0F7A5C;
+  background-color: var(--color-accent-light);
+}
+
+.es-status-badge.status-inactive {
+  color: #7A8794;
+  background-color: #EEF4F9;
+}
+
+.es-status-badge.status-on-leave {
+  color: #A66A00;
+  background-color: #FEF9E7;
+}
+
+.es-score-pill {
+  color: var(--color-primary-dark);
+  background-color: var(--color-sky);
+  min-width: 2.25rem;
+}
+
+.es-view-btn,
+.es-text-action {
+  border: none;
+  background: transparent;
+  color: var(--color-primary);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.es-view-btn:hover,
+.es-text-action:hover {
+  color: var(--color-primary-dark);
+}
+
+.es-profile-hero {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-line-light);
+  border-radius: 0.75rem;
+  box-shadow: var(--shadow-sm);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+@media (min-width: 900px) {
+  .es-profile-hero {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.es-profile-main {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.es-profile-title-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.es-profile-meta,
+.es-profile-contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.625rem 1rem;
+  margin-top: 0.75rem;
+}
+
+.es-profile-meta span,
+.es-profile-contact span {
+  color: #33465A;
+  font-size: 0.8125rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.es-profile-contact {
+  flex-direction: column;
+  margin-top: 0;
+}
+
+.es-tabs {
+  display: flex;
+  gap: 0.375rem;
+  overflow-x: auto;
+  padding-bottom: 0.125rem;
+}
+
+.es-tabs button {
+  border: 1px solid var(--color-line-light);
+  background-color: var(--color-white);
+  color: var(--color-ink-mute);
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.es-tabs button.active {
+  color: var(--color-white);
+  border-color: transparent;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-primary-light));
+}
+
+.es-profile-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 1180px) {
+  .es-profile-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.es-detail-list,
+.es-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.es-detail-list span {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  color: #33465A;
+  font-size: 0.8125rem;
+  border-bottom: 1px solid var(--color-line-light);
+  padding-bottom: 0.625rem;
+}
+
+.es-detail-list strong {
+  color: var(--color-ink-mute);
+  font-weight: 600;
+}
+
+.es-score-strip {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+}
+
+.es-score-metric-header {
+  display: flex;
+  justify-content: space-between;
+  color: #33465A;
+  font-size: 0.8125rem;
+  margin-bottom: 0.375rem;
+}
+
+.es-score-metric-header strong {
+  color: var(--color-primary);
+  font-family: var(--font-mono);
+}
+
+.es-mini-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+}
+
+.es-mini-stat-grid span {
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-line-light);
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+  color: var(--color-ink-mute);
+  font-size: 0.75rem;
+}
+
+.es-mini-stat-grid strong {
+  display: block;
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  margin-bottom: 0.125rem;
+}
+
+.es-timeline span {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #33465A;
+  font-size: 0.8125rem;
+}
+
+.es-timeline svg {
+  color: var(--color-accent);
+}
+
+.es-tab-table-card .es-data-table {
+  min-width: 720px;
+}
+
+/* ===========================================================================
    DEPARTMENTS MODULE
    =========================================================================== */
 
