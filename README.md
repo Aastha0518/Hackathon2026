@@ -1,4 +1,4 @@
-# 🌿 EcoSphere — Enterprise ESG Management Platform
+<img width="1312" height="732" alt="image" src="https://github.com/user-attachments/assets/c8b3a344-258f-49c4-ae5c-91073e60bffb" /># 🌿 EcoSphere — Enterprise ESG Management Platform
 
 > A full-stack enterprise-grade ESG (Environmental, Social & Governance) and CSR (Corporate Social Responsibility) management platform built with React and Node.js.
 
@@ -231,15 +231,26 @@ Key component classes in `EcoSphereApp.css`:
 > Built with 💚 for a sustainable future.
 
 ## 📸 Screens
-
-- Dashboard
-- Employee Management
-- Employee Details
-- Departments
-- Environmental Module
-- CSR Activities
-- Governance
-- Challenges
-- Badges
+ -login:
+  <img width="1242" height="705" alt="image" src="https://github.com/user-attachments/assets/91a1da87-17c1-4855-ac6a-311eb871f4d8" />
+- Dashboard:
+  <img width="1312" height="732" alt="image" src="https://github.com/user-attachments/assets/bd29f8be-a381-4efb-bc92-75ed767ae722" />
+- Employee Management:
+  <img width="1247" height="701" alt="image" src="https://github.com/user-attachments/assets/7157b11a-e2a2-42e4-9fa6-a81e65b24487" />
+- Employee Details:
+  <img width="1250" height="696" alt="image" src="https://github.com/user-attachments/assets/54f6b573-cfe9-4e0f-be9a-af0f40dfd7e1" />
+- Departments:
+  <img width="1247" height="697" alt="image" src="https://github.com/user-attachments/assets/67bd3997-94fb-4180-a3cd-dc7b2ab6a99b" />
+  <img width="1242" height="697" alt="image" src="https://github.com/user-attachments/assets/db0398b5-d254-48ca-89be-6e92e50791d5" /> 
+- Challenges:
+  <img width="1242" height="705" alt="image" src="https://github.com/user-attachments/assets/9cea71af-8ab6-465d-9831-78942a1371fd" />
+- Badges:
+  <img width="1247" height="705" alt="image" src="https://github.com/user-attachments/assets/4c097682-840b-4a0f-aa4a-a4c45ad081e9" />
 - Rewards
+  <img width="1240" height="697" alt="image" src="https://github.com/user-attachments/assets/03fb811e-0184-47ab-a568-5cbb723875e2" />
+-Add User:
+  <img width="1317" height="742" alt="image" src="https://github.com/user-attachments/assets/f4fdb98a-5764-4707-a74a-27880d3eb5b1" />
+-User:
+ <img width="1242" height="702" alt="image" src="https://github.com/user-attachments/assets/00ce0ae2-778e-4550-b934-b88703e66b4a" />
+ 
 
