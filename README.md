@@ -229,3 +229,17 @@ Key component classes in `EcoSphereApp.css`:
 ---
 
 > Built with 💚 for a sustainable future.
+
+## 📸 Screens
+
+- Dashboard
+- Employee Management
+- Employee Details
+- Departments
+- Environmental Module
+- CSR Activities
+- Governance
+- Challenges
+- Badges
+- Rewards
+
