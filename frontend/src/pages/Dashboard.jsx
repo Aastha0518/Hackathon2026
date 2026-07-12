@@ -7,6 +7,7 @@ import {
   AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer
 } from "recharts";
 import { SphereMark } from "../components/SphereMark";
+import { DepartmentsPage } from "./Departments";
 import "./EcoSphereApp.css";
 
 // -- Radial "Sustainability Score" dial -------------------------------------
@@ -253,135 +254,141 @@ export function Dashboard({ user, onLogout }) {
         <Navbar setSidebarOpen={setSidebarOpen} user={user} onLogout={onLogout} />
 
         <main className="es-dashboard-main es-scrollbar">
-          {/* Stat cards — Vibrant Gradient style */}
-          <div className="es-stats-grid es-fade-up">
-            {stats.map((s) => (
-              <StatCard key={s.label} {...s} cardStyle="vibrant" />
-            ))}
-          </div>
-
-          {/* Chart + score */}
-          <div className="es-charts-grid">
-            <div className="es-chart-card-large">
-              <div className="es-chart-header">
-                <div>
-                  <p className="es-chart-title">Carbon &amp; CSR metrics</p>
-                  <p className="es-chart-subtitle">Monthly emissions reduction and event registrations</p>
-                </div>
-                <div className="es-chart-legend">
-                  <span className="es-legend-item">
-                    <span className="es-legend-dot" style={{ background: "#0B5FA5" }} />
-                    Emissions (t CO₂e)
-                  </span>
-                  <span className="es-legend-item">
-                    <span className="es-legend-dot" style={{ background: "#17B890" }} />
-                    CSR Registrations
-                  </span>
-                </div>
-              </div>
-              <div className="es-chart-container">
-                <ResponsiveContainer width="100%" height="100%">
-                  <AreaChart data={usageData} margin={{ left: -20, right: 10, top: 10 }}>
-                    <defs>
-                      <linearGradient id="carbonGrad" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stopColor="#0B5FA5" stopOpacity={0.25} />
-                        <stop offset="100%" stopColor="#0B5FA5" stopOpacity={0} />
-                      </linearGradient>
-                      <linearGradient id="csrGrad" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stopColor="#17B890" stopOpacity={0.25} />
-                        <stop offset="100%" stopColor="#17B890" stopOpacity={0} />
-                      </linearGradient>
-                    </defs>
-                    <CartesianGrid strokeDasharray="3 3" stroke="#EEF4F9" vertical={false} />
-                    <XAxis dataKey="month" tick={{ fontSize: 12, fill: "#93A5B6" }} axisLine={false} tickLine={false} />
-                    <YAxis tick={{ fontSize: 12, fill: "#93A5B6" }} axisLine={false} tickLine={false} />
-                    <Tooltip
-                      contentStyle={{ borderRadius: 10, border: "1px solid #E7EFF6", fontSize: 12, fontFamily: "Inter" }}
-                    />
-                    <Area type="monotone" dataKey="carbon" stroke="#0B5FA5" fill="url(#carbonGrad)" strokeWidth={2.2} />
-                    <Area type="monotone" dataKey="csr" stroke="#17B890" fill="url(#csrGrad)" strokeWidth={2.2} />
-                  </AreaChart>
-                </ResponsiveContainer>
-              </div>
-            </div>
-
-            <div className="es-score-card">
-              <p className="es-score-card-title">ESG Overall Score</p>
-              <p className="es-score-card-subtitle">Composite ESG metric performance</p>
-              <ScoreDial score={82} />
-              <p className="es-score-delta-text">↑ 4 points vs. last quarter</p>
-            </div>
-          </div>
-
-          {/* Goals + leaderboard + activity */}
-          <div className="es-bottom-grid">
-            <div className="es-card">
-              <p className="es-card-title">Leaderboard</p>
-              <p className="es-card-subtitle">Top departments leading in sustainability</p>
-              <div className="es-leaderboard-list">
-                {leaderboardData.map((item) => (
-                  <div key={item.rank} className="es-leaderboard-item">
-                    <div className={`es-rank-badge rank-${item.rank}`}>
-                      {item.rank}
-                    </div>
-                    <div className="es-leaderboard-info">
-                      <span className="es-leaderboard-name">{item.name}</span>
-                      <span className="es-leaderboard-dept">{item.dept} Department</span>
-                    </div>
-                    <div className="es-leaderboard-score">
-                      <span className="es-leaderboard-points">{item.points} pts</span>
-                      <div className="es-leaderboard-badges">{item.badges}</div>
-                    </div>
-                  </div>
+          {active === "departments" ? (
+            <DepartmentsPage />
+          ) : (
+            <>
+              {/* Stat cards — Vibrant Gradient style */}
+              <div className="es-stats-grid es-fade-up">
+                {stats.map((s) => (
+                  <StatCard key={s.label} {...s} cardStyle="vibrant" />
                 ))}
               </div>
-            </div>
 
-            <div className="es-card">
-              <p className="es-card-title">Sustainability goals</p>
-              <p className="es-card-subtitle">YTD target metrics progression</p>
-              <div className="es-goals-list" style={{ marginTop: "1rem" }}>
-                {goals.map((g) => (
-                  <div key={g.label} className="es-goal-item">
-                    <div className="es-goal-item-header">
-                      <span className="es-goal-label">{g.label}</span>
-                      <span className="es-mono">{g.value}%</span>
+              {/* Chart + score */}
+              <div className="es-charts-grid">
+                <div className="es-chart-card-large">
+                  <div className="es-chart-header">
+                    <div>
+                      <p className="es-chart-title">Carbon &amp; CSR metrics</p>
+                      <p className="es-chart-subtitle">Monthly emissions reduction and event registrations</p>
                     </div>
-                    <div className="es-goal-progress-wrapper">
-                      <div
-                        className="es-goal-progress-bar"
-                        style={{ width: `${g.value}%` }}
-                      />
+                    <div className="es-chart-legend">
+                      <span className="es-legend-item">
+                        <span className="es-legend-dot" style={{ background: "#0B5FA5" }} />
+                        Emissions (t CO₂e)
+                      </span>
+                      <span className="es-legend-item">
+                        <span className="es-legend-dot" style={{ background: "#17B890" }} />
+                        CSR Registrations
+                      </span>
                     </div>
                   </div>
-                ))}
-              </div>
-            </div>
+                  <div className="es-chart-container">
+                    <ResponsiveContainer width="100%" height="100%">
+                      <AreaChart data={usageData} margin={{ left: -20, right: 10, top: 10 }}>
+                        <defs>
+                          <linearGradient id="carbonGrad" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stopColor="#0B5FA5" stopOpacity={0.25} />
+                            <stop offset="100%" stopColor="#0B5FA5" stopOpacity={0} />
+                          </linearGradient>
+                          <linearGradient id="csrGrad" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stopColor="#17B890" stopOpacity={0.25} />
+                            <stop offset="100%" stopColor="#17B890" stopOpacity={0} />
+                          </linearGradient>
+                        </defs>
+                        <CartesianGrid strokeDasharray="3 3" stroke="#EEF4F9" vertical={false} />
+                        <XAxis dataKey="month" tick={{ fontSize: 12, fill: "#93A5B6" }} axisLine={false} tickLine={false} />
+                        <YAxis tick={{ fontSize: 12, fill: "#93A5B6" }} axisLine={false} tickLine={false} />
+                        <Tooltip
+                          contentStyle={{ borderRadius: 10, border: "1px solid #E7EFF6", fontSize: 12, fontFamily: "Inter" }}
+                        />
+                        <Area type="monotone" dataKey="carbon" stroke="#0B5FA5" fill="url(#carbonGrad)" strokeWidth={2.2} />
+                        <Area type="monotone" dataKey="csr" stroke="#17B890" fill="url(#csrGrad)" strokeWidth={2.2} />
+                      </AreaChart>
+                    </ResponsiveContainer>
+                  </div>
+                </div>
 
-            <div className="es-card">
-              <p className="es-card-title">Recent activity</p>
-              <p className="es-card-subtitle">Live employee &amp; team audit logs</p>
-              <div className="es-activity-list es-scrollbar" style={{ marginTop: "1rem" }}>
-                {activity.map((a) => {
-                  const Icon = a.icon;
-                  return (
-                    <div key={a.id} className="es-activity-item">
-                      <div
-                        className="es-activity-icon-box"
-                        style={{ background: `${a.color}1A` }}
-                      >
-                        <Icon size={14} color={a.color} />
-                      </div>
-                      <div>
-                        <p className="es-activity-text">{a.text}</p>
-                        <p className="es-activity-time">{a.time}</p>
-                      </div>
-                    </div>
-                  );
-                })}
+                <div className="es-score-card">
+                  <p className="es-score-card-title">ESG Overall Score</p>
+                  <p className="es-score-card-subtitle">Composite ESG metric performance</p>
+                  <ScoreDial score={82} />
+                  <p className="es-score-delta-text">↑ 4 points vs. last quarter</p>
+                </div>
               </div>
-            </div>
-          </div>
+
+              {/* Goals + leaderboard + activity */}
+              <div className="es-bottom-grid">
+                <div className="es-card">
+                  <p className="es-card-title">Leaderboard</p>
+                  <p className="es-card-subtitle">Top departments leading in sustainability</p>
+                  <div className="es-leaderboard-list">
+                    {leaderboardData.map((item) => (
+                      <div key={item.rank} className="es-leaderboard-item">
+                        <div className={`es-rank-badge rank-${item.rank}`}>
+                          {item.rank}
+                        </div>
+                        <div className="es-leaderboard-info">
+                          <span className="es-leaderboard-name">{item.name}</span>
+                          <span className="es-leaderboard-dept">{item.dept} Department</span>
+                        </div>
+                        <div className="es-leaderboard-score">
+                          <span className="es-leaderboard-points">{item.points} pts</span>
+                          <div className="es-leaderboard-badges">{item.badges}</div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="es-card">
+                  <p className="es-card-title">Sustainability goals</p>
+                  <p className="es-card-subtitle">YTD target metrics progression</p>
+                  <div className="es-goals-list" style={{ marginTop: "1rem" }}>
+                    {goals.map((g) => (
+                      <div key={g.label} className="es-goal-item">
+                        <div className="es-goal-item-header">
+                          <span className="es-goal-label">{g.label}</span>
+                          <span className="es-mono">{g.value}%</span>
+                        </div>
+                        <div className="es-goal-progress-wrapper">
+                          <div
+                            className="es-goal-progress-bar"
+                            style={{ width: `${g.value}%` }}
+                          />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="es-card">
+                  <p className="es-card-title">Recent activity</p>
+                  <p className="es-card-subtitle">Live employee &amp; team audit logs</p>
+                  <div className="es-activity-list es-scrollbar" style={{ marginTop: "1rem" }}>
+                    {activity.map((a) => {
+                      const Icon = a.icon;
+                      return (
+                        <div key={a.id} className="es-activity-item">
+                          <div
+                            className="es-activity-icon-box"
+                            style={{ background: `${a.color}1A` }}
+                          >
+                            <Icon size={14} color={a.color} />
+                          </div>
+                          <div>
+                            <p className="es-activity-text">{a.text}</p>
+                            <p className="es-activity-time">{a.time}</p>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+            </>
+          )}
         </main>
       </div>
     </div>
